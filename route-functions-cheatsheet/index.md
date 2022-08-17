@@ -3,7 +3,7 @@ title: Route functions cheatsheet
 slug: route-functions-cheatsheet
 description: A cheatsheet for request and route functions in Laravel applications.
 date: 2022-08-15
-tags: [php, laravel, snippet, cheatsheet, routes, request, parameters, query string]
+tags: [php, laravel, snippet, cheatsheet, routes, request, parameters, query string, macros]
 sources: []
 ---
 
