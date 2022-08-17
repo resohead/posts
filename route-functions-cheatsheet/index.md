@@ -20,6 +20,7 @@ We will mostly be using the route class `Illuminate\Routing\Route` via the facad
   - [Action](#action)
   - [Parameters](#parameters)
   - [List](#list)
+  - [Previous route name](#previous-route-name)
 - [URL](#url)
   - [Current](#current-1)
   - [Is](#is-1)
@@ -130,6 +131,31 @@ Route::getRoutes()->getRoutesByMethod()
     'PUT' => [],
     'DELETE' => [],
 ]
+```
+
+### Previous route name
+
+```php
+$previousRoute = app('router')->getRoutes()->match(
+        app('request')->create(url()->previous())
+    );
+
+-$previousRouteName = $previousRoute->getName();
+```
+
+You could add this to the Route macros (or helpers file) to make it available as a shortcut:
+```php
+// in a service provider
+Illuminate\Support\Facades\Route::macro('previousRoute', function(): Illuminate\Routing\Route {
+    $url = url()->previous();
+
+    return app('router')->getRoutes()->match(
+        app('request')->create($url)
+    );
+});
+
+// use
+Route::previousRoute()->getName();
 ```
 
 
