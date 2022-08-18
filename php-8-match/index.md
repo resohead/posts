@@ -19,7 +19,7 @@ With PHP 8 match function we can safely use functions as expression values.
 Here's an example from Ryan's article using arrays for pattern matching / matrix conditionals.
 
 ```php
-options = [
+$options = [
     'monthly',
     'credit-card',
 ];

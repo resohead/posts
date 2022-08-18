@@ -7,6 +7,7 @@ date: 2022-08-16
 tags: [laravel, container bindings, extending, snippet]
 sources:
     - https://twitter.com/timacdonald87/status/1309044900869140481
+    - https://laravel.com/docs/container#extending-bindings
 ---
 
 # Extending Laravel container bindings
