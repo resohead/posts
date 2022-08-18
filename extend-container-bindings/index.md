@@ -4,7 +4,7 @@ slug: extend-container-bindings
 description: See how you can build upon existing bindings.
 excerpt: Container values can be 'extended' which allows you to build on previously bound values.
 date: 2022-08-16
-tags: [laravel, container bindings, extending, snippets]
+tags: [laravel, container bindings, extending, snippet]
 sources:
     - https://twitter.com/timacdonald87/status/1309044900869140481
 ---

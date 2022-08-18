@@ -4,7 +4,7 @@ slug: laravel-mail-config
 description: A quick guide on Laravel mail config
 excerpt:
 date: 2022-08-16
-tags: [laravel, snippets, mail, config]
+tags: [laravel, snippet, mail, config]
 sources: []
 ---
 

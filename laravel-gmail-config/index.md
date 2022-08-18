@@ -4,7 +4,7 @@ slug: laravel-gmail-config
 description: A quick tip to show how to configure gmail for laravel
 excerpt:
 date: 2022-08-16
-tags: [laravel, snippets, mail, config]
+tags: [laravel, snippet, mail, config]
 sources: []
 ---
 
