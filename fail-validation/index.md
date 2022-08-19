@@ -1,8 +1,8 @@
 ---
-title: Extend Container Bindings
-slug: extend-container-bindings
-description: See how you can build upon existing bindings.
-excerpt: Container values can be 'extended' which allows you to build on previously bound values.
+title: Fail Validation
+slug: fail-validation
+description: Throw validation errors anywhere
+excerpt: Laravel's validation system takes care of all the dirty work for you, including redirecting the user back to the previous page
 date: 2022-08-16
 tags: [laravel, snippet, validation, errors, exceptions]
 sources: []
