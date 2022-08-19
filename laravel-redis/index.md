@@ -71,7 +71,7 @@ Laravel will use the redis and cache prefix as the full cache key:
 
 `cache prefix` = `{project}_cache`
 
-`path` = `{redis_prefix}_{cache_prefix}``
+`path` = `{redis_prefix}_{cache_prefix}`
 
 For example, `{project}_database_{project}_cache_:{key}`
 
