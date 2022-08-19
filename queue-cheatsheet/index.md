@@ -18,7 +18,7 @@ Process background jobs with a number of configuration options.
 * tries = number of failed attempts (exceptions, releases) a worker allows until the job is considered a failure
 * automatic retries = see `tries`
 * backoff = time between failed job retries from uncaught exceptions - can be an integer or array of integers
-* retryAfter = deprecated name for backoff in Laravel versions < 8.x
+* retryAfter = deprecated name for backoff in Laravel versions `< 8.x`
 * timeout = how long the job can run for before considered a failure
 * workers = number of processes running on the backlog
 * failed jobs = a maintenance table to inspect failed jobs - push back onto the queue using `php artisan queue:retry`

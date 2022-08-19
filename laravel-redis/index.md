@@ -67,17 +67,17 @@ Laravel redis default:
 
 Laravel will use the redis and cache prefix as the full cache key:
 
-`redis prefix` = {project}_database
+`redis prefix` = "{project}_database"
 
-`cache prefix` = {project}_cache
+`cache prefix` = "{project}_cache"
 
-`path` = {redis_prefix}_{cache_prefix}
+`path` = "{redis_prefix}_{cache_prefix}""
 
 For example, "{project}_database_{project}_cache_:{key}"
 
 ## Flushing
 
-The Laravel `cache:clear` artisan command does *not* take cache prefixes, defined in your app config, into account. The prefix is not a cache namespace but just a string on the front of a key name.
+The Laravel `cache:clear` artisan command does not take cache prefixes, defined in your app config, into account. The prefix is not a cache namespace but just a string on the front of a key name.
 
 If you are deploying a staging and production site to the same server they will share the same redis cache database (i.e. 1) and will wipe both caches even if the artisan command is run via the other site or on deployment.
 
