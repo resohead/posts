@@ -1,6 +1,6 @@
 ---
 title: PHP 8 Match
-slug:
+slug: php-8-match
 excerpt: A couple of examples using PHP 8 match function
 date: 2022-08-15
 tags: [php, match, syntax, snippet]
