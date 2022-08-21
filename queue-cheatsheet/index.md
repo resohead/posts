@@ -3,7 +3,7 @@ title: Queue cheatsheet
 slug: queue-cheatsheet
 description: Reference Laravel queue commands and configuration options.
 date: 2022-08-15
-tags: [php, laravel, snippet, queues, reference]
+tags: [php, laravel, snippet, queues, cache, cheatsheet]
 sources:
     - https://ryangjchandler.co.uk/posts/all-about-match-expressions
 ---
