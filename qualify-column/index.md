@@ -1,7 +1,7 @@
 ---
 title: Qualify column
 slug: qualify-column
-description:
+description: Easily prepend your columns with the table name.
 date: 2022-08-15
 tags: [php, laravel, snippet]
 sources: []
@@ -9,21 +9,7 @@ sources: []
 
 # Qualify column
 
-
-`Illuminate\Database\Eloquent\Builder`
-
-```php
-/**
- * Qualify the given column name by the model's table.
- *
- * @param  string|\Illuminate\Database\Query\Expression  $column
- * @return string
- */
-public function qualifyColumn($column)
-{
-    return $this->model->qualifyColumn($column);
-}
-```
+Laravel comes with a helpful model method to easily prepend your columns with the table name.
 
 `Illuminate\Database\Eloquent\Model`
 
@@ -41,6 +27,21 @@ public function qualifyColumn($column)
     }
 
     return $this->getTable().'.'.$column;
+}
+```
+
+`Illuminate\Database\Eloquent\Builder`
+
+```php
+/**
+ * Qualify the given column name by the model's table.
+ *
+ * @param  string|\Illuminate\Database\Query\Expression  $column
+ * @return string
+ */
+public function qualifyColumn($column)
+{
+    return $this->model->qualifyColumn($column);
 }
 ```
 

@@ -1,7 +1,7 @@
 ---
 title: Blade Component With JavaScript
 slug: blade-component-with-javascript
-excerpt: A simple but powerful way ensure a blade component has all the scripts needed to render the view in one file
+description: A simple but powerful way ensure a blade component has all the scripts needed to render the view in one file.
 date: 2022-08-15
 tags: [javascript, laravel, blade, snippet]
 sources:

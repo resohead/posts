@@ -1,7 +1,7 @@
 ---
 title: Laravel Pipelines
 slug: laravel-pipelines
-excerpt: Use pipeline classes run steps in sequence with an object oriented approach
+description: Use pipeline classes run steps in sequence with an object oriented approach.
 date: 2022-08-15
 tags: [laravel, pipelines, middleware]
 sources: []

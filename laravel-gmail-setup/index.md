@@ -1,8 +1,7 @@
 ---
-title: Laravel gmail config
-slug: laravel-gmail-config
-description: A quick tip to show how to configure gmail for laravel
-excerpt:
+title: Laravel gmail setup
+slug: laravel-gmail-setup
+description: A quick tip to show how to configure gmail for laravel.
 date: 2022-08-16
 tags: [laravel, snippet, mail, config]
 sources: []

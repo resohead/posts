@@ -1,8 +1,7 @@
 ---
 title: Laravel mail testing
 slug: laravel-mail-testing
-description: A snippet to show how to assert against mailable properties in feature tests
-excerpt:
+description: A snippet to show how to assert against mailable properties in feature tests.
 date: 2022-08-16
 tags: [laravel, snippet, mail, config, testing, phpunit]
 sources: []

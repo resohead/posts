@@ -1,8 +1,7 @@
 ---
 title: Queue cheatsheet
 slug: queue-cheatsheet
-description: Reference Laravel queue commands and configuration options
-excerpt: Process background jobs with a number of configuration options
+description: Reference Laravel queue commands and configuration options.
 date: 2022-08-15
 tags: [php, laravel, snippet, queues, reference]
 sources:

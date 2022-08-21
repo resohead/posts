@@ -2,7 +2,6 @@
 title: Retry helper
 slug: retry-helper
 description: Attempt to execute a callback until it succeeds or the maximum retry threshold is met and exception is thrown.
-excerpt: Attempt to execute a callback until it succeeds or the maximum retry threshold is met and exception is thrown.
 date: 2022-08-15
 tags: [php, laravel, snippet, queues, reference]
 sources: []

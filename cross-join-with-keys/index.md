@@ -1,7 +1,7 @@
 ---
 title: Cross Join With Keys
 slug: cross-join-with-keys
-excerpt:
+description: Use cross join to generate combinations of associative arrays.
 date: 2022-08-15
 tags: [laravel, collections, macro, snippet]
 sources: []

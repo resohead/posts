@@ -1,7 +1,7 @@
 ---
 title: Local composer repositories
 slug: local-composer-repositories
-excerpt: Use local versions of packages in demo applications during development
+description: Use local versions of packages in demo applications during development.
 date: 2022-08-15
 tags: [composer, php, bash, homestead, local, packages]
 sources:

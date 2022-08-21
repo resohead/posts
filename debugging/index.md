@@ -1,8 +1,7 @@
 ---
 title: Debugging
 slug: debugging
-description: How to debug anything
-excerpt:
+description: How to debug anything.
 date: 2022-08-16
 tags: []
 sources: []

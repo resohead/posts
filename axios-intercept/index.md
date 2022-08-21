@@ -1,7 +1,7 @@
 ---
 title: Axios intercept
 slug: axios-intercept
-excerpt: A snippet to intercept axios to view requet details
+description: A snippet to intercept axios to view requet details.
 date: 2022-08-15
 tags: [javascript, axios, snippet]
 sources: []

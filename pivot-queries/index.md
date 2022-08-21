@@ -1,7 +1,7 @@
 ---
 title: Pivot queries
 slug: pivot-queries
-description: How to query additional attributes on pivot tables
+description: How to query additional attributes on pivot tables.
 date: 2022-08-15
 tags: [php, laravel, snippet, query, eloquent, pivot]
 sources: []

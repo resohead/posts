@@ -1,7 +1,7 @@
 ---
 title: No scrollbar css
 slug: no-scrollbar-css
-excerpt: A couple of examples using PHP 8 match function
+description: Hide the scrollbar!
 date: 2022-08-15
 tags: [css, tailwind, snippet]
 sources:

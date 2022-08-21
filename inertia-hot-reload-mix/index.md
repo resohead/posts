@@ -1,8 +1,7 @@
 ---
 title: Inertia hot reload with Laravel mix
 slug: inertia-hot-reload-mix-with-laravel-mix
-description:
-excerpt:
+description: How to use hot module replacement with Laravel mix and Inertia.js
 date: 2021-08-16
 tags: [php, laravel, inertia, js, homestead, windows, snippet]
 sources:

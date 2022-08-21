@@ -1,7 +1,7 @@
 ---
 title: Laravel redis cache tips
 slug: laravel-redis
-excerpt: Clearing the redis cache in Laravel apps
+description: Clearing the redis cache in Laravel apps.
 date: 2022-08-15
 tags: [laravel, redis, snippet, cache, deployment]
 sources: []

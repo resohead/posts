@@ -1,8 +1,7 @@
 ---
 title: Laravel polymorphic searching
 slug: laravel-polymorphic-searching
-description: Filter by parent polymorphic models in Laravel apps
-excerpt: Builder classes offer a way of encapsulating model query logic in a class with better autocompletetion
+description: Filter by parent polymorphic models in Laravel apps.
 date: 2022-08-15
 tags: [php, laravel, snippet, eloquent, query]
 sources: []

@@ -1,7 +1,7 @@
 ---
 title: Homestead PHP-FPM Aliases
 slug: homestead-php-fpm-aliases
-excerpt: Create your own bash alias to change Homestead's PHP-FPM settings per site
+description: Create your own bash alias to change Homestead's PHP-FPM settings per site.
 date: 2022-08-15
 tags: [snippet, laravel, homestead, bash, fpm, nginx]
 sources: []

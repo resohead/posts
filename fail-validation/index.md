@@ -1,8 +1,8 @@
 ---
 title: Fail Validation
 slug: fail-validation
-description: Throw validation errors anywhere
-excerpt: Laravel's validation system takes care of all the dirty work for you, including redirecting the user back to the previous page
+description: Throw validation errors anywhere.
+excerpt: Laravel's validation system takes care of all the dirty work for you, including redirecting the user back to the previous page.
 date: 2022-08-16
 tags: [laravel, snippet, validation, errors, exceptions]
 sources: []

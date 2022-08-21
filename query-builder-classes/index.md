@@ -1,8 +1,8 @@
 ---
 title: Query Builder Classes
 slug: query-builder-classes
-description: Replace local query scopes with dedicated query builder classes
-excerpt: Builder classes offer a way of encapsulating model query logic in a class with better autocompletetion
+description: Replace local query scopes with dedicated query builder classes.
+excerpt: Builder classes offer a way of encapsulating model query logic in a class with better autocompletetion.
 date: 2022-08-15
 tags: [php, laravel, snippet, eloquent, query]
 sources:
