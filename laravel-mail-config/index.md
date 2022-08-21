@@ -115,4 +115,4 @@ foreach ($recipients as $recipient) {
 
 ## Gmail settings
 
-See how to use [gmail with laravel](./laravel-gmail-config).
+See how to use [gmail with laravel](./laravel-gmail-setup).
