@@ -1,7 +1,7 @@
 ---
 title: Moving apps across AWS accounts
 slug: moving-apps-across-aws-accounts
-description: A twitter tip from Claudio Dekker and Zubair Moshin about migrating AWS apps across accounts
+description: A twitter tip from Claudio Dekker and Zubair Moshin about migrating AWS apps across accounts.
 date: 2022-08-15
 tags: [aws, migrations, twitter]
 sources:
