@@ -50,7 +50,7 @@ Laravel cache default:
 // config/cache.php
 
 'prefix' => env('CACHE_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_cache'),
-// adamwhitebikefit_cache
+// demo_cache
 ```
 
 Laravel redis default:
@@ -60,7 +60,7 @@ Laravel redis default:
         // ...
         'options' => [
             'prefix' => env('REDIS_PREFIX', Str::slug(env('APP_NAME', 'laravel'), '_').'_database_'),
-            // adamwhitebikefit_database_
+            // demo_database_
         ],
 ]
 ```
