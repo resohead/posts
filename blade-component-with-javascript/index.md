@@ -12,7 +12,7 @@ sources:
 
 This is a snippet from Jeffrey Way but he has deleted the original tweet. It's a simple but powerful way ensure a blade component has all the scripts needed to render the view in one file. Do yourself a favour and get a [Laracasts](https://laracasts.com) account so you don't have to read this blog!
 
-The following example uses Apline.js to trigger an instance of a different javascript library and `@once` to push scripts to the stack in your layout file.
+The following example uses Alpine.js to trigger an instance of a different javascript library and `@once` to push scripts to the stack in your layout file.
 
 ```php
 // <x-date-picker />
