@@ -4,10 +4,9 @@ slug: soketi-laravel-homestead-windows
 description: Broadcast events over websockets using Soketi with Laravel Homestead on Windows.
 date: 2022-08-26
 tags: [websockets, homestead, windows, vite, pusher, echo]
-sources: [
+sources:
     - https://laravel.com/docs/broadcasting
     - https://docs.soketi.app/getting-started/installation/cli-installation#installing-with-npm
-]
 ---
 
 # Using Soketi with Laravel Homestead on Windows
@@ -21,8 +20,6 @@ This is a quick guide to show you how to configure Laravel and soketi to allow b
 You just need to point the Pusher compatible client to the soketi server address.
 
 > Note - this article is strictly and reference guide and will not go into detail about websockets, how to set up Homestead or how to create a Laravel application.
-
----
 
 - [Prerequisites](#prerequisites)
 - [Summary](#summary)
@@ -289,7 +286,7 @@ We will listen for events in our dashboard and pass the results to a separate co
 
 
 `js\Pages\Dashboard.vue`
-```vue
+```js
 <template>
     <Head title="Dashboard" />
 
@@ -333,7 +330,7 @@ We will listen for events in our dashboard and pass the results to a separate co
 ```
 
 `js\Components\UserJoined.vue`
-```vue
+```js
 <template>
     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
         <div class="p-6 bg-white border-b border-gray-200">
