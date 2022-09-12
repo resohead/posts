@@ -11,6 +11,7 @@ sources:
 
 # Using Soketi with Laravel Homestead on Windows
 
+## Introduction
 This is a quick guide to show you how to configure Laravel and soketi to allow broadcasting events via websockets. Soketi is a "simple, fast, and resilient open-source WebSockets server".
 
 - implements the `Pusher Protocol v7`
@@ -19,31 +20,14 @@ This is a quick guide to show you how to configure Laravel and soketi to allow b
 
 You just need to point the Pusher compatible client to the soketi server address.
 
-> Note - this article is strictly and reference guide and will not go into detail about websockets, how to set up Homestead or how to create a Laravel application.
+> Note - this article is strictly and reference guide and will not go into detail about websockets, how to set up Homestead or how to create a Laravel application
 
-- [Prerequisites](#prerequisites)
-- [Summary](#summary)
-- [Instructions](#instructions)
-  - [Install Soketi](#install-soketi)
-  - [Install Pusher](#install-pusher)
-  - [Install Laravel Echo and Pusher JS](#install-laravel-echo-and-pusher-js)
-  - [Configure environment](#configure-environment)
-    - [Env](#env)
-    - [Laravel broadcast config](#laravel-broadcast-config)
-    - [JavaScript](#javascript)
-  - [Create a broadcastable event](#create-a-broadcastable-event)
-  - [Start Soketi, queues and build assets](#start-soketi-queues-and-build-assets)
-  - [Verify Soketi connection](#verify-soketi-connection)
-  - [Receive an event](#receive-an-event)
-  - [Debugging](#debugging)
-- [Using Echo within Vue component](#using-echo-within-vue-component)
-- [What's next?](#whats-next)
+### Prerequisites
+- Homestead provisioned and running
+- Laravel application responding to requests
+- npm installed on your local machine
 
-## Prerequisites
-- you have Laravel Homestead working and responding to requests
-- you have npm installed on your local machine
-
-## Summary
+### Summary
 
 1. Install Soketi using Yarn [in Homestead]
 2. Install Push PHP Server using Composer [in Homestead]
@@ -53,7 +37,8 @@ You just need to point the Pusher compatible client to the soketi server address
 6. Verify socketi connection
 7. Visit your application in the browser and trigger the event
 
-## Instructions
+## Getting started
+
 ### Install Soketi
 
 Homestead has problems with NPM so I always use NPM in a local window when installing packages or running scripts.
@@ -63,21 +48,21 @@ In this case we need to run this command inside our Homestead VM so we will use 
 yarn install -g @soketi/soketi
 ```
 
-### Install Pusher
+### Pusher PHP Server
 
 Soketi support using [Pusher channels](https://pusher.com/channels) such as private, prescence etc. We want to use that so let's install the Pusher PHP SDK:
 ```
 composer require pusher/pusher-php-server
 ```
 
-### Install Laravel Echo and Pusher JS
+### Laravel Echo and Pusher JS
 
 In a local project terminal install Laravel Echo and Pusher packages:
 ```
 npm install --save-dev laravel-echo pusher-js
 ```
 
-### Configure environment
+## Configuration
 
 First update your project's `.env` to ensure we are using Pusher, redis and our soketi connection details. Remember, we need to point the Soketi (i.e. Pusher) host to our Homestead IP, i.e. 192.168.10.10 instead of 127.0.0.1.
 
@@ -88,7 +73,7 @@ Note - Soketi uses the following config values by default:
 - Port: 6001
 
 
-#### Env
+### Environment
 ```
 # ...
 
@@ -120,7 +105,7 @@ VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
 
 > You can change the socketi port by running `SOKETI_PORT=9001 soketi start` on whatever port you want.
 
-#### Laravel broadcast config
+### Broadcast driver
 
 There shouldn't be too much to change from a standard Laravel install on 9.x:
 
@@ -153,7 +138,7 @@ return [
     ]
 ```
 
-#### JavaScript
+### JavaScript
 
 We also need to provide the connection details to Laravel Echo to enable use to start listening to events:
 
@@ -189,8 +174,9 @@ Notice we have also set a listener on a public channel `room.1` that will respon
 
 Next we need to create this backend event in Laravel and trigger it.
 
-### Create a broadcastable event
+## Broadcasting
 
+### Create an event
 ```
 php artisan make:event UserJoinedRoom
 ```
