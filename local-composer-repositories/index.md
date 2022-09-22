@@ -14,14 +14,6 @@ sources:
 You might be working on a Laravel package or a framework pull request where you need to test any changes in a real application.
 It might be possible to create a proof of concept by editing the vendor file directly but any real work will need to be saved in a separate repository.
 
-- [1. Create a local package repository](#1-create-a-local-package-repository)
-- [2. Prepare a demo application](#2-prepare-a-demo-application)
-- [3. Update composer repository path](#3-update-composer-repository-path)
-- [4. Composer require dev branch](#4-composer-require-dev-branch)
-- [5. Composer update](#5-composer-update)
-- [6. Add Bash alias (optional)](#6-add-bash-alias-optional)
-- [Symlink failed?](#symlink-failed)
-
 ## 1. Create a local package repository
 Fork a package and clone source code you want to make changes to
 ```

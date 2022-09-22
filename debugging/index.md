@@ -9,20 +9,6 @@ sources: []
 
 # Debugging
 
-- [What's the issue?](#whats-the-issue)
-  - [What do they have in common?](#what-do-they-have-in-common)
-  - [Information gathering](#information-gathering)
-  - [Point of failure](#point-of-failure)
-- [Make a hypothesis](#make-a-hypothesis)
-- [Fix and repeat](#fix-and-repeat)
-  - [Production logging](#production-logging)
-  - [Puzzle pieces](#puzzle-pieces)
-  - [Indirect causes](#indirect-causes)
-  - [Amplify](#amplify)
-- [Take a break](#take-a-break)
-- [Tests](#tests)
-- [Summary](#summary)
-
 ## What's the issue?
 Write down the most basic description of the issue with
 - simple language

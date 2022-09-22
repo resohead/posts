@@ -9,11 +9,6 @@ sources: []
 
 # Mail Config
 
-- [Default from address](#default-from-address)
-- [Default to address](#default-to-address)
-- [Sending emails to a list](#sending-emails-to-a-list)
-- [Gmail settings](#gmail-settings)
-
 ## Default from address
 You can set a global `from` address in `config/mail.php` instead of setting it each time on your mailables.
 

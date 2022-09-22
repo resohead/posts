@@ -15,13 +15,6 @@ This is simple using the array method + spread operator but requires an extra st
 
 Skip to the [Collection macro](#collection-macro) section to get a snippet that allows you to cross join collections using keys.
 
-- [Cross join assoc array (spread)](#cross-join-assoc-array-spread)
-  - [Output](#output)
-- [Using Collections](#using-collections)
-  - [Output](#output-1)
-- [Cross join without keys then map](#cross-join-without-keys-then-map)
-- [Collection macro](#collection-macro)
-
 ## Cross join assoc array (spread)
 ```php
 $builds = [

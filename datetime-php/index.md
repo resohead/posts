@@ -15,31 +15,6 @@ This article is everything you need to know about date/time in Laravel.
 
 We will cover important things like immutability, formatting, exending Carbon with macros as well as helpful tips like a format cheat sheet, youtube duration formats and constants.
 
-- [Cheat Sheet](#cheat-sheet)
-  - [Formats](#formats)
-  - [Examples](#examples)
-  - [Carbon constants](#carbon-constants)
-- [Custom date formats](#custom-date-formats)
-  - [Extending Carbon](#extending-carbon)
-  - [Custom constants](#custom-constants)
-  - [Blade stringables](#blade-stringables)
-  - [Immutable dates by default](#immutable-dates-by-default)
-  - [Creating Dates](#creating-dates)
-- [Duration](#duration)
-  - [Simple Duration string](#simple-duration-string)
-  - [Youtube Duration](#youtube-duration)
-    - [Simple](#simple)
-    - [Advanced](#advanced)
-    - [CarbonInterval Macro](#carboninterval-macro)
-    - [CarbonInterval Mixin](#carboninterval-mixin)
-    - [CarbonInterval Mixin (Trait)](#carboninterval-mixin-trait)
-  - [Create Time From Format](#create-time-from-format)
-- [Avoiding Magic Time](#avoiding-magic-time)
-  - [Fluent Interval](#fluent-interval)
-  - [Setting Time](#setting-time)
-  - [Convert DateTime to Carbon](#convert-datetime-to-carbon)
-- [Periods](#periods)
-
 ## Cheat Sheet
 
 ### Formats

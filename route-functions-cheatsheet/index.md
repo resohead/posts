@@ -13,22 +13,6 @@ Laravel comes with a number of helpers around the routes and current request whi
 
 We will mostly be using the route class `Illuminate\Routing\Route` via the facade `Illuminate\Support\Facades\Route` and the request class `Illuminate\Http\Request` with the `request()` helper.
 
-- [Route](#route)
-  - [Current](#current)
-  - [Name](#name)
-  - [Is](#is)
-  - [Action](#action)
-  - [Parameters](#parameters)
-  - [List](#list)
-  - [Previous route name](#previous-route-name)
-- [URL](#url)
-  - [Current](#current-1)
-  - [Is](#is-1)
-  - [Segment](#segment)
-  - [Query string](#query-string)
-- [Components](#components)
-- [Further reading](#further-reading)
-
 ## Route
 
 ### Current

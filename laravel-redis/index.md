@@ -11,13 +11,6 @@ sources: []
 
 Learn how to use redis databases along with tags to isolate cache for sites sharing a redis server.
 
-- [Redis CLI](#redis-cli)
-- [Prefixes](#prefixes)
-- [Flushing](#flushing)
-- [Database number](#database-number)
-- [Tags](#tags)
-- [Caching paginated results](#caching-paginated-results)
-
 ## Redis CLI
 ```bash
 $ redis-cli

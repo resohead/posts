@@ -14,18 +14,6 @@ You could use it anywhere you need a run a sequence of steps. The Laravel framew
 
 It also allows you to unit test the function.
 
-- [Method Signature](#method-signature)
-- [Pipe Classes](#pipe-classes)
-  - [Optional Interface](#optional-interface)
-  - [Pipe Parameters](#pipe-parameters)
-- [Pipeline Classes](#pipeline-classes)
-  - [Dynamic Pipes](#dynamic-pipes)
-  - [Trigger via static method](#trigger-via-static-method)
-- [Error handling with transactions](#error-handling-with-transactions)
-- [Testing](#testing)
-- [Sources](#sources)
-
-
 ## Method Signature
 
 ```php
