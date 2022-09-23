@@ -20,7 +20,8 @@ This is a quick guide to show you how to configure Laravel and soketi to allow b
 
 You just need to point the Pusher compatible client to the soketi server address.
 
-> Note - this article is strictly and reference guide and will not go into detail about websockets, how to set up Homestead or how to create a Laravel application
+> :warning: Before you start...
+> This article is strictly and reference guide and will not go into detail about websockets, how to set up Homestead or how to create a Laravel application
 
 ### Prerequisites
 - Homestead provisioned and running
@@ -103,6 +104,7 @@ VITE_PUSHER_SCHEME="${PUSHER_SCHEME}"
 VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
 ```
 
+> :tip: Did you know?
 > You can change the socketi port by running `SOKETI_PORT=9001 soketi start` on whatever port you want.
 
 ### Broadcast driver
@@ -236,7 +238,8 @@ Check the dev tools console and check you see an event with the expected payload
 - ensure the js assets are loaded into your web page
 - check any console connection errors show the correct port and scheme
 
-> Tip - if it says 'wss' is being used despite your config then double check your are not accessing your homestead development site via HTTPS, otherwise Soketi will force 'wss'!
+> :tip:
+> If it says 'wss' is being used despite your config then double check your are not accessing your homestead development site via HTTPS, otherwise Soketi will force 'wss'!
 
 ## Using Echo within Vue component
 
@@ -244,7 +247,7 @@ Let's remove our listener from our bootstrap file and plug it into our Vue compo
 
 The theory remains unchanged - we are going to set a listener for an event (`UserJoinedRoom`) on a specific channel (`room.1`) - but we will define this in our Vue component's mounted hook.
 
-> Note - the examples below will use Vue 3
+> Examples below are using Vue 3
 
 Remove the listener from our `resources\js\bootstrap.js` file.
 ```diff

@@ -28,9 +28,8 @@ mix.browserSync({
 });
 
 ```
-> This should install any additional dev dependencies.
-
-> Remember to restart the npm process to ensure your webpack changes are picked up
+> :tip:
+> This should install any additional dev dependencies but remember to restart the npm process to ensure your webpack changes are picked up
 
 Optional:
 ```

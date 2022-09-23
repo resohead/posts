@@ -23,7 +23,8 @@ config/mail.php
 ## Default to address
 You might want to store email addresses of site owner in a config file so you can deliver admin emails to them through mailables.
 
-> ⚠ **Warning!** Do not create a `to` key in the `config/mail.php` file! This is reserved as a universal delivery address for development/testing. Doing this will override all delivery addresses on the mailables.
+> :warning:
+> Do not create a `to` key in the `config/mail.php` file! This is reserved as a universal delivery address for development/testing. Doing this will override all delivery addresses on the mailables.
 
 In the example below we will keep our 'internal' email addresses in a `site` key.
 

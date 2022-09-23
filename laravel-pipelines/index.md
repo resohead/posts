@@ -181,6 +181,7 @@ $sometingElse = DoSomethingPipeline::sendAndReturn($something);
 ## Error handling with transactions
 You could wrap your pipeline in a try catch and add transactions to your method. This will exit the pipeline and avoid database problems with partial completion.
 
+> :tip:
 > Remember to throw errors from your pipes!
 
 ```php

@@ -60,7 +60,8 @@ Edit `composer.json` and the required package version to use `-dev` flag.
 
 The version specified in your demo app must match the checked-out branch of the locally forked framework with a `dev` prefix or suffix.
 
-> Note: see how versions with a `.` period use a `x-dev` suffix
+> :tip: Take a closer look...
+> Versions with a `.` period use a `x-dev` suffix
 
 | Branch | Composer version |
 |---------|---------|

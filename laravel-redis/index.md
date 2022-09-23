@@ -102,7 +102,8 @@ Be careful! This is not a simple config change - you will need to implement this
 
 Cache tags are usually used against a domain (e.g. products, reviews). But you could also use the environment as a tag. Let's take a look
 
-> not all cache drivers support tags - check the Laravel documentation for an updated list.
+> :warning:
+> Not all cache drivers support tags - check the Laravel documentation for an updated list.
 
 Set the tags in your application code:
 ```php
