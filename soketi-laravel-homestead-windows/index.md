@@ -75,7 +75,7 @@ Note - Soketi uses the following config values by default:
 
 
 ### Environment
-```
+```.env
 # ...
 
 BROADCAST_DRIVER=pusher
@@ -111,9 +111,7 @@ VITE_PUSHER_APP_CLUSTER="${PUSHER_APP_CLUSTER}"
 
 There shouldn't be too much to change from a standard Laravel install on 9.x:
 
-```php
-// config\broadcasting.php
-
+```php file="config\broadcasting.php"
 return [
     'default' => env('BROADCAST_DRIVER', 'null'),
 
@@ -144,9 +142,7 @@ return [
 
 We also need to provide the connection details to Laravel Echo to enable use to start listening to events:
 
-```js
-// ...
-
+```js file="resource\js\bootstrap.js"
 import Echo from 'laravel-echo';
 import Pusher from 'pusher-js';
 
@@ -185,7 +181,7 @@ php artisan make:event UserJoinedRoom
 
 In this example we will create a public channel with a dynamic 'room' id and also pass some extra data (user model) through the constructor.
 
-```php
+```php file="App\Events\UserJoinedRoom.php"
 class UserJoinedRoom implements ShouldBroadcast
 {
     use Dispatchable, InteractsWithSockets, SerializesModels;
@@ -216,9 +212,9 @@ Your should receive `ok` after visiting `http://192.168.10.10:6001` in your brow
 You can dispatch the event [we created earlier](#create-a-broadcastable-event) in any way you normally would but in order to quickly test everything is wired up correctly you can:
 - create a route to dispatch the event from
 - create a command to trigger the event from the command line
-- trigger the event directly thorugh tinker (or Tinkerwell!)
+- trigger the event directly through tinker (or Tinkerwell!)
 
-```php
+```php title="Laravel"
 UserJoinedRoom::dispatch($room = 1, $user = User::find(1));
 ```
 
@@ -245,24 +241,27 @@ Check the dev tools console and check you see an event with the expected payload
 
 Let's remove our listener from our bootstrap file and plug it into our Vue components.
 
-The theory remains unchanged - we are going to set a listener for an event (`UserJoinedRoom`) on a specific channel (`room.1`) - but we will define this in our Vue component's mounted hook.
+The theory remains unchanged - we are going to set a listener for an event `UserJoinedRoom` on a specific channel `room.1` but we will define this in our Vue component's mounted hook.
 
 > Examples below are using Vue 3
 
-Remove the listener from our `resources\js\bootstrap.js` file.
-```diff
+We will listen for events in our dashboard and pass the results to a separate component to render the message. This example uses Laravel's Breeze template but this is the same as any other Vue component.
 
-window.Echo = new Echo({
-    broadcaster: 'pusher',
-    key: import.meta.env.VITE_PUSHER_APP_KEY,
-    wsHost: import.meta.env.VITE_PUSHER_HOST ?? `ws-${import.meta.env.VITE_PUSHER_APP_CLUSTER}.pusher.com`,
-    wsPort: import.meta.env.VITE_PUSHER_PORT ?? 80,
-    wssPort: import.meta.env.VITE_PUSHER_PORT ?? 443,
-    forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
-    encrypted: true,
-    disableStats: true,
-    enabledTransports: ['ws', 'wss'],
-});
+Remove the listener from our `resources\js\bootstrap.js` file.
+
+```js diff file="resources\js\bootstrap.js"
+
+ window.Echo = new Echo({
+     broadcaster: 'pusher',
+     key: import.meta.env.VITE_PUSHER_APP_KEY,
+     wsHost: import.meta.env.VITE_PUSHER_HOST ?? `ws-${import.meta.env.VITE_PUSHER_APP_CLUSTER}.pusher.com`,
+     wsPort: import.meta.env.VITE_PUSHER_PORT ?? 80,
+     wssPort: import.meta.env.VITE_PUSHER_PORT ?? 443,
+     forceTLS: (import.meta.env.VITE_PUSHER_SCHEME ?? 'https') === 'https',
+     encrypted: true,
+     disableStats: true,
+     enabledTransports: ['ws', 'wss'],
+ });
 
 - window.Echo
 -    .channel('room.1')
@@ -271,75 +270,71 @@ window.Echo = new Echo({
 -    });
 ```
 
-We will listen for events in our dashboard and pass the results to a separate component to render the message. This example uses Laravel's Breeze template but this is the same as any other Vue component.
 
+```js diff file="resources\js\Pages\Dashboard.vue"
+ <script setup>
+     import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue'
+     import { Head } from '@inertiajs/inertia-vue3'
+     import UserJoined from '@/Components/UserJoined.vue'
+     import { onMounted, reactive } from 'vue'
 
-`js\Pages\Dashboard.vue`
-```js
-<template>
-    <Head title="Dashboard" />
+     let messages = reactive([])
 
-    <BreezeAuthenticatedLayout>
-        <template #header>
-            <h2 class="font-semibold text-xl text-gray-800 leading-tight">
-                Dashboard
-            </h2>
-        </template>
++    onMounted(() => {
++        window.Echo
++            .channel(`room.1`)
++            .listen('UserJoinedRoom', (e) => {
++                console.log(e)
++                messages.push(e)
++            })
++    })
+ </script>
 
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-2">
-                <UserJoined
-                    v-for="{user, room} in messages"
-                    :key="user.id"
-                    :user="user"
-                    :room="room"
-                />
-            </div>
-        </div>
-    </BreezeAuthenticatedLayout>
-</template>
+ <template>
+     <Head title="Dashboard" />
 
-<script setup>
-    import BreezeAuthenticatedLayout from '@/Layouts/Authenticated.vue';
-    import { Head } from '@inertiajs/inertia-vue3';
-    import UserJoined from '@/Components/UserJoined.vue'
-    import { onMounted, reactive } from 'vue';
+     <BreezeAuthenticatedLayout>
+         <template #header>
+             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
+                 Dashboard
+             </h2>
+         </template>
 
-    let messages = reactive([])
-
-    onMounted(() => {
-        window.Echo
-            .channel(`room.1`)
-            .listen('UserJoinedRoom', (e) => {
-                console.log(e);
-                messages.push(e)
-            });
-    })
-</script>
+         <div class="py-12">
+             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8 space-y-2">
+                 <UserJoined
+                     v-for="{user, room} in messages"
+                     :key="user.id"
+                     :user="user"
+                     :room="room"
+                 />
+             </div>
+         </div>
+     </BreezeAuthenticatedLayout>
+ </template>
 ```
 
-`js\Components\UserJoined.vue`
-```js
-<template>
-    <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
-        <div class="p-6 bg-white border-b border-gray-200">
-            {{ user.name }} joined room {{ room }}
-        </div>
-    </div>
-</template>
+```js diff file="resources\js\Components\UserJoined.vue"
+! <script setup>
+!     defineProps({
+!         user: {
+!             type: Object,
+!             default: {}
+!         },
+!         room: {
+!             type: String,
+!             default: '',
+!         },
+!     });
+! </script>
 
-<script setup>
-    defineProps({
-        user: {
-            type: Object,
-            default: {}
-        },
-        room: {
-            type: String,
-            default: '',
-        },
-    });
-</script>
+ <template>
+     <div class="bg-white overflow-hidden shadow-sm sm:rounded-lg">
+         <div class="p-6 bg-white border-b border-gray-200">
+             {{ user.name }} joined room {{ room }}
+         </div>
+     </div>
+ </template>
 ```
 
 ## What's next?

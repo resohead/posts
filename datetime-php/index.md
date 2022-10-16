@@ -153,9 +153,7 @@ We could use the Carbon's converter 'method' approach for our own common [date f
 
 You can extend `Illuminate\Support\Carbon` in a service provider with macros.
 
-```php
-// AppServiceProvider
-
+```php file="App\Providers\AppServiceProvider" comment="Did you know you can create and register your own service providers!"
 use Illuminate\Support\Carbon;
 
 Carbon::macro('ukShortFormat', function(){
@@ -167,12 +165,23 @@ Carbon::macro('toDefaultFormat', function(){
 });
 ```
 
+```sh file="Create a service provider"
+php artisan make:provider TimeServiceProvider
+```
+
+```php diff file="config/app.php"
+ 'providers' => [
+     // ...
++    App\Providers\ComposerServiceProvider::class,
+ ],
+```
+
 ### Custom constants
 
 If you have a number of different formats or you just want to clean up your service provider's macro calls you could set the string formats as enum or class constants.
 
 Here we are using Enums (PHP 8.1+)
-```php
+```php file="App\Enums\DateTimeFormats.php"
 enum DateTimeFormats: string
 {
     case ISO_DATE = 'Y-m-d';
@@ -186,7 +195,7 @@ now()->format(DateTimeFormat::UK_SHORT->value);
 
 but you could always use class constants
 
-```php
+```php file="App\Support\DateTimeFormat.php"
 class DateTimeFormat
 {
     public const ISO_DATE = 'Y-m-d';
@@ -200,7 +209,7 @@ now()->format(DateTimeFormat::UK_SHORT);
 
 or in a macro:
 
-```php
+```php title="App\Providers\AppServiceProvider.php"
 Carbon::macro('ukShortFormat', function(){
     return $this->format(DateTimeFormat::UK_SHORT);
 });
@@ -210,7 +219,7 @@ Carbon::macro('ukShortFormat', function(){
 
 You could set the default blade carbon output format by changing the stringable implementation in a service provider.
 
-```php
+```php file="App\Providers\ViewServiceProvider.php"
 use Illuminate\Support\Carbon;
 
 Blade::stringable(fn (Carbon $carbon) =>
@@ -226,7 +235,7 @@ Making dates immutable is sort of like copying a version the previous instance b
 
 We can force Laravel to use immutable dates by default by calling the `Date` facade in the boot method of a service provider.
 
-```php
+```php file="App\Providers\AppServiceProvider.php"
 use Illuminate\Support\Facades\Date;
 
 public function boot(){
@@ -248,7 +257,7 @@ Now any eloquent model datetime attributes will be immutable by default 🎉
 Just remember to use Date instead of Carbon when instantiating dates manually!
 
 This means you no longer have to remember to use the `CarbonImmutable` class, or cast your models:
-```php
+```php file="App\Models\\{model}.php"
 protected $casts = [
     // ...
     'created_at' => 'immutable_datetime' // no longer required
@@ -281,9 +290,7 @@ gmdate("j:H:i:s", $seconds = 86410); // 2:00:00:10
 
 #### Simple
 
-```php
-// Will not work over 24 hours
-
+```php comment="Warning! This will not work over 24 hours."
 function simpleTimeFormat($seconds)
 {
     return $time->totalHours >= 1
@@ -314,23 +321,25 @@ youtubeFormat(8170) // "02:16:10"
 
 #### CarbonInterval Macro
 
-```php
-// in service provider
+```php file="App\Providers\AppServiceProvider.php"
 Carbon\CarbonInterval::macro('youtubeFormat', function ()
 {
-      return sprintf("%02d:%02d:%02d",
-               self::this()->totalHours,
-               self::this()->totalMinutes % 60,
-               self::this()->totalSeconds % 60
-            );
+    return sprintf("%02d:%02d:%02d",
+            self::this()->totalHours,
+            self::this()->totalMinutes % 60,
+            self::this()->totalSeconds % 60
+        );
 });
 
+// usage
 CarbonInterval::seconds(86471)->youtubeFormat(); // "24:01:11"
 ```
 
 #### CarbonInterval Mixin
-```php
-// in support folder
+
+Create a mixin class and register to the framework via a service provider.
+
+```php file="App\Support\YoutubeFormatCarbonMixin.php"
 class YoutubeFormatCarbonMixin
 {
     public function youtubeFormat()
@@ -341,18 +350,22 @@ class YoutubeFormatCarbonMixin
         };
     }
 }
+```
 
-// in service provider
-Carbon\CarbonInterval::mixin(new YoutubeFormatCarbonMixin());
+```php file="App\Providers\AppServiceProvider.php"
+public function boot()
+{
+    Carbon\CarbonInterval::mixin(new YoutubeFormatCarbonMixin());
+}
+```
 
-// in your application
-return Carbon\CarbonInterval::seconds($seconds)
-    ->youtubeFormat();
+```php title="Usage"
+return Carbon\CarbonInterval::seconds($seconds)->youtubeFormat();
 ```
 
 #### CarbonInterval Mixin (Trait)
 
-```php
+```php file="App\Traits\YoutubeFormatCarbonMixin.php"
 trait YoutubeFormatCarbonMixin
 {
     public function youtubeFormat()
@@ -361,47 +374,43 @@ trait YoutubeFormatCarbonMixin
         // return YoutubeFormat function code here
     }
 }
+```
 
-// in service provider
-Carbon::mixin(YoutubeFormatCarbonMixin::class);
+```php file="App\Provider\AppServiceProvider.php"
+function boot()
+{
+    Carbon::mixin(YoutubeFormatCarbonMixin::class);
+}
 ```
 
 ### Create Time From Format
 
 ```php
-CarbonInterval::createFromFormat('H:i:s', '10:20:00');
-// 10 hours 20 minutes
+CarbonInterval::createFromFormat('H:i:s', '10:20:00'); // 10 hours 20 minutes
 ```
 
 ## Magic Time
 
 ### Fluent Interval
 ```php
-Carbon\CarbonInterval::day()->totalSeconds
-// 86400
+Carbon\CarbonInterval::day()->totalSeconds; // 86400
 
-Carbon\CarbonInterval::week()->totalDays
-// 7
+Carbon\CarbonInterval::week()->totalDays; // 7
 
-Carbon\CarbonInterval::days(2)->hours(1)->totalHours;
-// 25 (two days + 1 hour)
+Carbon\CarbonInterval::days(2)->hours(1)->totalHours; // 25 (two days + 1 hour)
 
- Carbon\CarbonInterval::seconds(150)->totalMinutes;
- // 2.5
+Carbon\CarbonInterval::seconds(150)->totalMinutes; // 2.5
 
- (int) round(Carbon\CarbonInterval::seconds(150)->totalMinutes);
- // 3
+(int) round(Carbon\CarbonInterval::seconds(150)->totalMinutes); // 3
 
- Carbon\CarbonInterval::seconds(817)->cascade()->forHumans(['short' => true]);
-// "13m 37s"
+Carbon\CarbonInterval::seconds(817)->cascade()->forHumans(['short' => true]); // "13m 37s"
 
 Carbon\CarbonInterval::days(1)
   	->hours(3)
   	->minutes(45)
   	->seconds(3)
     ->youtubeFormat();
-// "27:45:03"
-// 27 hours, 45 minutes and 3 seconds
+    // "27:45:03" => 27 hours, 45 minutes and 3 seconds
 ```
 
 ### Setting Time

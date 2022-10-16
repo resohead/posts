@@ -16,7 +16,7 @@ This is simple using the array method + spread operator but requires an extra st
 Skip to the [Collection macro](#collection-macro) section to get a snippet that allows you to cross join collections using keys.
 
 ## Cross join assoc array (spread)
-```php
+```php title="Array helper"
 $builds = [
   'php' => [7.3, 7.4, 8.0],
   'stability' => ['prefer-lowest', 'prefer-stable'],
@@ -26,8 +26,7 @@ $builds = [
 $matrix = Arr::crossJoin(...$builds);
 ```
 
-### Output
-```php
+```php title="Output"
 [
   [
     "php" => 7.3,
@@ -57,7 +56,7 @@ $matrix = Arr::crossJoin(...$builds);
 
 If we use a similar approach with collections we do not get the same output.
 
-```php
+```php title="Collection"
 collect([
   'php' => [7.3, 7.4, 8.0],
   'laravel' => ['6.x', '7.x', '8.x']
@@ -67,8 +66,7 @@ collect([
 ]);
 ```
 
-### Output
-```php
+```php title="Output"
 [
     [
       [
@@ -101,21 +99,20 @@ Oops, that's not what we want.
 
 In order to produce the same output as the original `Arr::crossJoin` we could collection and cross join the array values and map the keys back in at the end.
 
-```php
+```php title="Cross join" comment="or by using array combine..."
 collect([7.3, 7.4, 8.0])
-  ->crossJoin(
-    ['prefer-lowest', 'prefer-stable'],
-    ['6.x', '7.x', '8.x']
-  )
-  ->map(fn($build) => [
-    'php' => $build[0],
-    'stability' => $build[1],
-    'laravel' => $build[2],
-  ]);
+    ->crossJoin(
+        ['prefer-lowest', 'prefer-stable'],
+        ['6.x', '7.x', '8.x']
+    )
+    ->map(fn($build) => [
+        'php' => $build[0],
+        'stability' => $build[1],
+        'laravel' => $build[2],
+    ]);
 ```
 
-or using `array_combine`
-```php
+```php title="Array combine"
 collect([7.3, 7.4, 8.0])
     ->crossJoin(
         ['prefer-lowest', 'prefer-stable'],
@@ -126,13 +123,33 @@ collect([7.3, 7.4, 8.0])
     )
 ```
 
+```php diff title="Diff"
+ collect([7.3, 7.4, 8.0])
+    ->crossJoin(
+        ['prefer-lowest', 'prefer-stable'],
+        ['6.x', '7.x', '8.x']
+    )
+    ->map(fn ($build) =>
+-        [
+-            'php' => $build[0],
+-            'stability' => $build[1],
+-            'laravel' => $build[2],
+-        ]
++        array_combine(['php', 'stability', 'laravel'], $build)
+    )
+```
+
 This would work but depending on how your original data is coming in it could get a bit messy. Let's create a collection macro to behave in a similar way to the array functions.
 
 ## Collection macro
 
 Add the following macro to a service provider. It merges any given items with the existing collection and spreads into the array cross join function.
 
-```php
+```sh title="Terminal"
+php artisan make:provider CollectionServiceProvider
+```
+
+```php file="AppServiceProvider.php"
 Collection::macro('crossJoinWithKeys', function ($items = null) {
     $items = $this->merge($this->getArrayableItems($items));
 
@@ -142,9 +159,9 @@ Collection::macro('crossJoinWithKeys', function ($items = null) {
 });
 ```
 
-This allows us to collect our builds using keys:
+This allows us to collect our builds using `crossJoinWithKeys`
 
-```php
+```php title="crossJoinWithKeys" comment="or even without arguments..."
 collect([
   'php' => [7.3, 7.4, 8.0],
   'laravel' => ['6.x', '7.x', '8.x']
@@ -154,20 +171,16 @@ collect([
 ]);
 ```
 
-or even without arguments:
-
-```php
+```php title="Without arguments" comment="and still receive the same output"
 collect([
   'php' => [7.3, 7.4, 8.0],
   'laravel' => ['6.x', '7.x', '8.x'],
   'stability' => ['prefer-lowest', 'prefer-stable']
 ])
 ->crossJoinWithKeys();
-```
+```s
 
-and still receive the original matrix output:
-
-```php
+```php title="Output"
 [
   [
     "php" => 7.3,
