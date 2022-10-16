@@ -36,10 +36,13 @@ A collection of markdown files for my blog.
   - [x] diff highlighting
   - [x] code block comments
   - [ ] links (e.g. code screenshot, github gist link, tailwind play url)
-  - embeds using custom link tag
-    - [-] youtube `[!youtube](https://youtube.com/<video-id>)`
-    - [-] GitHub gists `[!gist](https://gist.github.com/<gist-id>)`
-    - [-] Twitter `[!tweet](https://twitter.com/<tweet-id>)`
+  - [ ] indent diffs correctly
+  - [ ] fix rendering bug with grouped code bocks at the end of article
+- [ ] clean up custom plugins and global components
+- embeds using custom link tag
+  - [x] youtube `[!youtube](https://youtube.com/<video-id>)`
+  - [x] GitHub gists `[!gist](https://gist.github.com/<gist-id>)`
+  - [x] Twitter `[!tweet](https://twitter.com/<tweet-id>)`
 - custom callout component using quote syntax
   - support different syntax
     - [x] `> :warning: This is a warning` (custom style)
