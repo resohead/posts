@@ -42,7 +42,7 @@ composer install Laravel\Socialite
 - a personal team should be created for new accounts
 - test new, existing and multiple social accounts
 
-```php file="database/migrations/create_social_user_table.php"
+```php file="database/migrations/create_social_user_table.php" status="inserted"
 use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
@@ -67,7 +67,7 @@ return new class extends Migration
 };
 ```
 
-```php file="app/Models/SocialUser.php"
+```php file="app/Models/SocialUser.php" status="inserted"
 namespace App\Models;
 
 use App\Models\User;
@@ -97,7 +97,7 @@ class SocialUser extends Model
 }
 ```
 
-```php file="config/services.php"
+```php file="config/services.php" status="modified"
 return [
     // ...
 +    'github' => [
@@ -109,7 +109,7 @@ return [
 ];
 ```
 
-```php file="routes/web.php"
+```php file="routes/web.php" status="modified"
 // ...
 
 +Route::get('login/{provider}', [SocialLoginController::class, 'redirectToProvider'])
@@ -121,7 +121,7 @@ return [
 // ...
 ```
 
-```php file="app/Http/Controller/Auth/SocialLoginController.php"
+```php file="app/Http/Controller/Auth/SocialLoginController.php" status="inserted"
 namespace App\Http\Controllers\Auth;
 
 use App\Models\User;
@@ -258,7 +258,7 @@ class SocialLoginController extends Controller
 }
 ```
 
-```php file="app/Actions/Fortify/CreateNewUser.php"
+```php file="app/Actions/Fortify/CreateNewUser.php" status="modified"
     // ...
 
     ---protected--- +++public+++ function createTeam(User $user)
@@ -273,7 +273,7 @@ class SocialLoginController extends Controller
     // ...
 ```
 
-```php file="test/Feature/SocialLoginTest.php"
+```php file="test/Feature/SocialLoginTest.php" status="inserted"
 use App\Models\User;
 use Laravel\Socialite\Two\User as SocialiteUser;
 use Laravel\Socialite\Facades\Socialite;
