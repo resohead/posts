@@ -261,7 +261,7 @@ class SocialLoginController extends Controller
 ```php file="app/Actions/Fortify/CreateNewUser.php"
     // ...
 
-+    ***public*** function createTeam(User $user)
+    ---protected--- +++public+++ function createTeam(User $user)
     {
         $user->ownedTeams()->save(Team::forceCreate([
             'user_id' => $user->id,
