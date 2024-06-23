@@ -57,15 +57,45 @@ Which can now be used in your views.
 <html>
     <head>
         <style>
-            @if(Vite::isRunningHot())
++            @if(Vite::isRunningHot())
                 @vite(['resources/css/app/app.css'])
-            @else
-                {!! vite_file('resources/css/app.css') !!}
-            @endif
++            @else
++                {!! vite_file('resources/css/app.css') !!}
++            @endif
         </style>
     </head>
     ...
 </html>
+```
+
+You could even wrap this up into a blade directive:
+```php
+function vite_inline(string $path, ?string $url = null): string
+{
+    $style = Vite::isRunningHot()
+        ? Vite::asset($path, $url)
+        : vite_file($path, $url);
+
+    return "<style>{$style}</style>";
+}
+```
+
+```php file="app/providers/AppServiceProvider.php"
+public function boot(): void
+    {
+        Blade::directive('vite_inline', function ($expression) {
+            return "<?php echo vite_inline({$expression}); ?>";
+        });
+    }
+```
+
+```php file="resources/views/layouts/master.php"
+<html>
+    <head>
+-        @vite('resources/css/app.css')
++        @vite_inline('resources/css/app.css')
+    </head>
+    ...
 ```
 
 ## Existing files
@@ -94,7 +124,7 @@ function resource_file(string $path): string
 
 ```php file="resources/views/layouts/app.blade.php"
 <style>
-    {!! resource_file('css/app.css') !!}
++    {!! resource_file('css/app.css') !!}
 </style>
 ```
 
