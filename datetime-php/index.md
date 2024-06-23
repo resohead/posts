@@ -286,7 +286,7 @@ gmdate("j\d H:i:s", $seconds = 86410); // 2d 00:00:10
 gmdate("j:H:i:s", $seconds = 86410); // 2:00:00:10
 ```
 
-### Youtube Duration
+### Youtube Duration (Display format)
 
 #### Simple
 
@@ -324,11 +324,14 @@ youtubeFormat(8170) // "02:16:10"
 ```php file="App\Providers\AppServiceProvider.php"
 Carbon\CarbonInterval::macro('youtubeFormat', function ()
 {
-    return sprintf("%02d:%02d:%02d",
-            self::this()->totalHours,
-            self::this()->totalMinutes % 60,
-            self::this()->totalSeconds % 60
-        );
+    $interval = $this;
+    $totalSeconds = $interval->totalSeconds;
+    
+    $hours = intdiv($totalSeconds, 3600);
+    $minutes = intdiv($totalSeconds % 3600, 60);
+    $seconds = $totalSeconds % 60;
+    
+    return sprintf("%02d:%02d:%02d", $hours, $minutes, $seconds);
 });
 
 // usage
